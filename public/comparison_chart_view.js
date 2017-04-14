@@ -88,6 +88,25 @@ ComparisonChartView.prototype = {
       new ColumnChart(costContainer, costTitle, costSeries, costCategories);
       this.container.appendChild(costContainer);
 
+      // crew comparison
+      var crewContainer = document.createElement('div')
+      var crewTitle = 'Crew';
+      leftCrew = parseInt(ships[leftIndex].crew);
+      rightCrew = parseInt(ships[rightIndex].crew);
+      if(isNaN(leftCrew)) {leftCrew = 0}
+      if(isNaN(rightCrew)) {rightCrew = 0}
+
+      var crewSeries = [{
+        name: ships[leftIndex].name, 
+        data: [leftCrew]
+      },
+      {
+        name: ships[rightIndex].name, 
+        data: [rightCrew]
+      }]
+      var crewCategories = ['Crew'];
+      new ColumnChart(crewContainer, crewTitle, crewSeries, crewCategories);
+      this.container.appendChild(crewContainer);
     }
     
   }
