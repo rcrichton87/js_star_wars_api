@@ -26,67 +26,25 @@ ShipDetailsView.prototype = {
     manufacturer.innerText = 'Manufacturer: ' + ship.manufacturer;
     this.detailsElement.appendChild(manufacturer);
 
-    var speedMGLT = document.createElement('p');
-    var speedMGLTAsInt = parseInt(ship.MGLT)
-    if(isNaN(speedMGLTAsInt)){
-      speedMGLT.innerText = 'Speed (MGLT): ' + ship.MGLT;
-    } else {
-      speedMGLT.innerText = 'Speed (MGLT): ' + speedMGLTAsInt.toLocaleString() + ' MGLT';
-    }
-    this.detailsElement.appendChild(speedMGLT);
+    this.renderFloat(ship, 'MGLT', 'Speed (Space): ', ' MGLT');
+    this.renderFloat(ship, 'max_atmosphering_speed', 'Speed (Atmospheric): ', ' km/h');
+    this.renderFloat(ship, 'hyperdrive_rating', 'Hyperdrive Rating: ');
+    this.renderFloat(ship, 'cost_in_credits', 'Cost: ', ' credits');
+    this.renderFloat(ship, 'crew', 'Crew: ');
+    this.renderFloat(ship, 'passengers', 'Passengers: ');
+    this.renderFloat(ship, 'length', 'Length: ', ' m');
 
-    var speedAtmosphere = document.createElement('p');
-    var speedAtmosphereAsInt = parseInt(ship.max_atmosphering_speed);
-    if(isNaN(speedAtmosphereAsInt)){
-      speedAtmosphere.innerText = 'Speed (Atmospheric): ' + ship.max_atmosphering_speed;
-    } else {
-      speedAtmosphere.innerText = 'Speed (Atmospheric): ' + speedAtmosphereAsInt.toLocaleString() + ' km/h';
-    }
-    this.detailsElement.appendChild(speedAtmosphere);
+  },
 
-    var hyperdrive = document.createElement('p');
-    var hyperdriveAsFloat = parseFloat(ship.hyperdrive_rating);
-    if(isNaN(hyperdriveAsFloat)){
-      hyperdrive.innerText = 'Hyperdrive Rating: ' + ship.hyperdrive_rating;
-    } else {
-      hyperdrive.innerText = 'Hyperdrive Rating: ' + hyperdriveAsFloat;
-    }
-    this.detailsElement.appendChild(hyperdrive);
-
-    var cost = document.createElement('p');
-    var costAsInt = parseInt(ship.cost_in_credits);
-    if(isNaN(costAsInt)){
-      cost.innerText = 'Cost: ' + ship.cost_in_credits;
-    } else {
-      cost.innerText = 'Cost: ' + costAsInt.toLocaleString() + ' credits';
-    }
-    this.detailsElement.appendChild(cost);
-
-    var crew = document.createElement('p');
-    var crewAsInt = parseInt(ship.crew);
-    if(isNaN(crewAsInt)){
-      crew.innerText = 'Crew: ' + ship.crew;
-    } else { 
-      crew.innerText = 'Crew: ' + crewAsInt.toLocaleString();
-    }
-    this.detailsElement.appendChild(crew);
-
-    var passengers = document.createElement('p');
-    var passengersAsInt = parseInt(ship.passengers);
-    if(isNaN(passengersAsInt)){
-      passengers.innerText = 'Passengers: ' + ship.passengers;
+  renderFloat: function(ship, stat, label, trailingString){
+    var display = document.createElement('p');
+    var statAsFloat = parseFloat(ship[stat].replace(',', '')); // replace because the Executor's length is 19,000 in the API
+    if(isNaN(statAsFloat)){
+      display.innerText = label + ship[stat];
     } else {  
-      passengers.innerText = 'Passengers: ' + passengersAsInt.toLocaleString();
+      display.innerText = label + statAsFloat.toLocaleString();
+      if(trailingString){display.innerText += trailingString}
     }
-    this.detailsElement.appendChild(passengers);
-
-    var length = document.createElement('p');
-    var lengthAsFloat = parseFloat(ship.length.replace(',', '')); // replace because the Executor's length is 19,000 in the API
-    if(isNaN(lengthAsFloat)){
-      length.innerText = 'Length: ' + ship.length;
-    } else {
-      length.innerText = 'Length: ' + lengthAsFloat.toLocaleString() + 'm';
-    }
-    this.detailsElement.appendChild(length);
+    this.detailsElement.appendChild(display);
   }
 }
