@@ -11,3 +11,11 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+.red-text{
+  color: red;
+}
+
+.green-text{
+  color: green;
+}

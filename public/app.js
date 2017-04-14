@@ -13,13 +13,19 @@ var app = function(){
     shipsSelectViewRight.render(ships);
 
     shipsSelectViewLeft.selectElement.addEventListener('change', function(){
-      shipDetailsViewLeft.render(ships[this.value]);
+      shipDetailsViewLeft.render(ships[this.value], ships[shipsSelectViewRight.selectElement.value]);
+      if(ships[shipsSelectViewRight.selectElement.value]){
+        shipDetailsViewRight.render(ships[shipsSelectViewRight.selectElement.value], ships[this.value]);
+      }
       comparisonChartView.renderCharts(ships[this.value], ships[shipsSelectViewRight.selectElement.value]);
 
     }); 
 
     shipsSelectViewRight.selectElement.addEventListener('change', function(){
-      shipDetailsViewRight.render(ships[this.value]);
+      shipDetailsViewRight.render(ships[this.value], ships[shipsSelectViewLeft.selectElement.value]);
+      if(ships[shipsSelectViewLeft.selectElement.value]){
+        shipDetailsViewLeft.render(ships[shipsSelectViewLeft.selectElement.value], ships[this.value]);
+      }
       comparisonChartView.renderCharts(ships[shipsSelectViewLeft.selectElement.value], ships[this.value]);
     }); 
 
