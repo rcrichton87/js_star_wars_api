@@ -1,15 +1,26 @@
 var app = function(){
 
   var shipList = new ShipList('http://swapi.co/api/starships/');
-  var shipsSelectView = new ShipsSelectView(document.querySelector('#ships') );
-  var shipDetailsView = new ShipDetailsView(document.querySelector('#ship-details') );
+  var shipsSelectViewLeft = new ShipsSelectView(document.querySelector('#ships-left') );
+  var shipDetailsViewLeft = new ShipDetailsView(document.querySelector('#ship-details-left') );
+  var shipsSelectViewRight = new ShipsSelectView(document.querySelector('#ships-right') );
+  var shipDetailsViewRight = new ShipDetailsView(document.querySelector('#ship-details-right') );
+  var comparisonChartView = new ComparisonChartView(document.querySelector('#charts-container'))
   
   shipList.getData(function(ships){
     console.log(ships)
-    shipsSelectView.render(ships);
+    shipsSelectViewLeft.render(ships);
+    shipsSelectViewRight.render(ships);
 
-    shipsSelectView.selectElement.addEventListener('change', function(){
-      shipDetailsView.render(ships[this.value]);
+    shipsSelectViewLeft.selectElement.addEventListener('change', function(){
+      shipDetailsViewLeft.render(ships[this.value]);
+      comparisonChartView.render(this.value, shipsSelectViewRight.selectElement.value, ships);
+
+    }); 
+
+    shipsSelectViewRight.selectElement.addEventListener('change', function(){
+      shipDetailsViewRight.render(ships[this.value]);
+      comparisonChartView.render(shipsSelectViewLeft.selectElement.value, this.value, ships);
     }); 
 
   });

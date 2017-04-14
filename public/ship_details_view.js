@@ -81,7 +81,7 @@ ShipDetailsView.prototype = {
     this.detailsElement.appendChild(passengers);
 
     var length = document.createElement('p');
-    var lengthAsFloat = parseFloat(ship.length);
+    var lengthAsFloat = parseFloat(ship.length.replace(',', '')); // replace because the Executor's length is 19,000 in the API
     if(isNaN(lengthAsFloat)){
       length.innerText = 'Length: ' + ship.length;
     } else {
