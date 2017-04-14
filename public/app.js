@@ -1,7 +1,12 @@
 var app = function(){
 
   var shipList = new ShipList('http://swapi.co/api/starships/');
-  shipList.getData();
+  var shipsSelectView = new ShipsSelectView(document.querySelector('#ships') );
+  
+  shipList.getData(function(ships){
+    console.log(ships)
+    shipsSelectView.render(ships);
+  });
 
 }
 
