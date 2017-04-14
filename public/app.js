@@ -14,13 +14,13 @@ var app = function(){
 
     shipsSelectViewLeft.selectElement.addEventListener('change', function(){
       shipDetailsViewLeft.render(ships[this.value]);
-      comparisonChartView.render(this.value, shipsSelectViewRight.selectElement.value, ships);
+      comparisonChartView.renderCharts(ships[this.value], ships[shipsSelectViewRight.selectElement.value]);
 
     }); 
 
     shipsSelectViewRight.selectElement.addEventListener('change', function(){
       shipDetailsViewRight.render(ships[this.value]);
-      comparisonChartView.render(shipsSelectViewLeft.selectElement.value, this.value, ships);
+      comparisonChartView.renderCharts(ships[shipsSelectViewLeft.selectElement.value], ships[this.value]);
     }); 
 
   });
