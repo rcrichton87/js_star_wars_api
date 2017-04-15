@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>JS API Homework</title>
+    <title>Star Wars Top Trumps</title>
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src='ship_list.js'></script>
     <script src='ships_select_view.js'></script>
@@ -14,22 +14,20 @@
   <body>
     <main>
     <div id='ship-comparison'>
-      <div id ='left'>
+      <div id ='left' class='details'>
         <select id='ships-left'>
           <option selected disabled>Choose a ship</option>
         </select>
         <section id='ship-details-left'></section>
       </div>
-      <div id='right'>
+      <div id='right' class='details'>
         <select id='ships-right'>
           <option selected disabled>Choose a ship</option>
         </select>
         <section id='ship-details-right'></section>
       </div>
     </div>
-    <div id='charts-container'>
-      
-    </div>
+    <div id='charts-container' class='details'></div>
     </main>
   </body>
 </html>

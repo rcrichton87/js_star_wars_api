@@ -5,7 +5,7 @@ var ColumnChart = function(container, title, data, categories){
     chart: {
       type: 'column',
       renderTo: container,
-      width: 200
+      width: 180
     },
 
     title: {
@@ -26,7 +26,8 @@ var ColumnChart = function(container, title, data, categories){
             pointPadding: 0,
             borderWidth: 0,
             groupPadding: 0,
-            shadow: false
+            shadow: false,
+            maxPointWidth: 40
         }
     }, 
 

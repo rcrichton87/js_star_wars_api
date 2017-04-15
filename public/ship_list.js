@@ -18,6 +18,17 @@ ShipList.prototype = {
           this.url = result.next;
           this.getData(callback);
         } else {
+          this.ships.sort(function(ship1, ship2) {
+            var ship1Name = ship1.name.toUpperCase(); 
+            var ship2Name = ship2.name.toUpperCase(); 
+            if (ship1Name < ship2Name) {
+              return -1;
+            }
+            if (ship1Name > ship2Name) {
+              return 1;
+            }
+            return 0;
+          });
           callback(this.ships);
         }
       }

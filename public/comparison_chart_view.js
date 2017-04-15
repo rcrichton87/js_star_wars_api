@@ -1,12 +1,16 @@
 var ComparisonChartView = function(container){
   this.container = container;
+  this.container.style.visibility = 'hidden';
 }
 
 ComparisonChartView.prototype = {
   renderCharts: function(leftShip, rightShip){
     this.container.innerHTML = '';
 
+
     if(leftShip && rightShip){
+
+      this.container.style.visibility = 'visible';
 
       this.renderChart(leftShip, rightShip, 'MGLT', 'Speed (MGLT)' )
       this.renderChart(leftShip, rightShip, 'max_atmosphering_speed', 'Speed (Atmospheric)')
@@ -19,7 +23,8 @@ ComparisonChartView.prototype = {
   },
 
   renderChart: function(leftShip, rightShip, propertyToCompare, chartTitle){
-    var chartContainer = document.createElement('div')
+    var chartContainer = document.createElement('div');
+    chartContainer.className = 'chart'
     leftFloat = parseFloat(leftShip[propertyToCompare].replace(',', '')); // replace because the Executor's length is 19,000 in the API
     rightFloat = parseFloat(rightShip[propertyToCompare].replace(',', ''));
     if(isNaN(leftFloat)) {leftFloat = 0}

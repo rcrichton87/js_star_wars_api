@@ -1,3 +1,22 @@
+body{
+  background-image: url('background.jpg');
+  background-size: cover;
+}
+
+.details{
+  background-color: rgba(204, 230, 255, 0.8);
+  border-radius: 5px;
+  border-style: groove;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.chart{
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border-style: groove;
+}
+
 #ship-comparison{
   display: flex;
   flex-direction: row;
@@ -19,3 +38,4 @@
 .green-text{
   color: green;
 }
+

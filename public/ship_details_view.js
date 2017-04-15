@@ -7,10 +7,7 @@ ShipDetailsView.prototype = {
 
     this.detailsElement.innerHTML = '';
 
-    console.log(ship)
-
     var name = document.createElement('p');
-
     if(ship.name === ship.model){
       name.innerText = 'Name: ' + ship.name
     } else {
@@ -48,19 +45,18 @@ ShipDetailsView.prototype = {
 
     if(shipToCompareWith){
       statToCompareWith = parseFloat(shipToCompareWith[stat].replace(',', ''));
-      console.log('stats', statAsFloat, statToCompareWith)
       if(isNaN(statAsFloat) && !isNaN(statToCompareWith)){
         display.className = 'red-text';
-        console.log('left NaN right number', stat)
       } else if (!isNaN(statAsFloat) && isNaN(statToCompareWith)){
         display.className = 'green-text';
-        console.log('left number right NaN', stat)
-      } else if (statAsFloat < statToCompareWith){
+      } else if (statAsFloat < statToCompareWith && stat !== 'hyperdrive_rating'){
         display.className = 'red-text';
-        console.log('left < right', stat)
-      } else if (statAsFloat > statToCompareWith){
+      } else if (statAsFloat > statToCompareWith && stat !== 'hyperdrive_rating'){
         display.className = 'green-text';
-        console.log('left > right', stat)
+      } else if (statAsFloat < statToCompareWith && stat === 'hyperdrive_rating'){ // making hyperdrive rating have lower as better
+        display.className = 'green-text';
+      } else if (statAsFloat > statToCompareWith && stat === 'hyperdrive_rating'){
+        display.className = 'red-text';
       }
     }
     this.detailsElement.appendChild(display);
